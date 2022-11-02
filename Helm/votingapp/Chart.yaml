@@ -1,0 +1,6 @@
+apiVersion: v2
+name: votingapp
+description: Voting app with two interface. One to vote and another to see the votes
+type: application
+version: 0.1.0
+appVersion: "1.16.0"

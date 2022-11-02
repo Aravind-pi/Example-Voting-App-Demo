@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: {{ .Release.Name }}-votingappdeployment
+  labels:
+    deploy: front-end-application
+spec:
+  replicas: {{ .Values.votingapp.replicas }}
+  selector:
+    matchLabels:
+      name: votingapp
+      tier: front-end
+  template:
+    metadata:
+      name: votingapp-pod
+      labels:
+        name: votingapp
+        tier: front-end
+    spec:
+      containers:
+        - name: votingapp-container
+          image: "{{ .Values.votingapp.image.repository }}:{{ .Values.votingapp.image.tag }}"
+          ports:
+            - containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /live
+              port: 80
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "500Mi"
+            requests:
+              cpu: "250m"
+              memory: "100Mi"

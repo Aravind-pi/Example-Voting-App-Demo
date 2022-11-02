@@ -1,0 +1,12 @@
+apiVersion: v1 
+kind: Service 
+metadata:
+  name: {{ .Release.Name }}-resultappservice
+spec:
+  type: {{ .Values.resultappdeployment.service.type }}
+  selector:
+    name: resultapp
+    tier: front-end
+  ports:
+    - port: 80
+      targetPort: 80

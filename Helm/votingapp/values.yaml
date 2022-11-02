@@ -1,0 +1,43 @@
+#votingapp-deployment & service details.
+votingapp:
+  replicas: 1
+  image:
+    repository: kodekloud/examplevotingapp_vote
+    tag: v1
+  service:
+    type: LoadBalancer
+
+#redisapp-deployment & service details.
+redisdeployment:
+  replicas: 1
+  image:
+    repository: redis
+  service:
+    name: redis
+  
+#workerapp-deployment details.
+workerappdeployment:
+  replicas: 1
+  image:
+    repository: kodekloud/examplevotingapp_worker
+    tag: v1
+
+#postgres-deployment & service details.
+postgresdeployment:
+  replicas: 1
+  image:
+    repository: postgres 
+  service:
+    name: db
+
+#resultapp-deployment details.
+resultappdeployment:
+  replicas: 1
+  image:  
+    repository: kodekloud/examplevotingapp_result
+    tag: v1
+  service:
+    type: LoadBalancer
+
+
+
